@@ -33,6 +33,6 @@ module Done321
     config.active_record.raise_in_transactional_callbacks = true
 
     # To work with Heroku
-    config.serve_static_assets = true
+    config.serve_static_files = true
   end
 end
