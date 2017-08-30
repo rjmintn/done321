@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @item.user %>
+</p>
+
+<p>
+  <strong>Create by:</strong>
+  <%= @item.create_by %>
+</p>
+
+<p>
+  <strong>List:</strong>
+  <%= @item.list %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @item.priority %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @item.duration %>
+</p>
+
+<p>
+  <strong>Repeat:</strong>
+  <%= @item.repeat %>
+</p>
+
+<p>
+  <strong>Due:</strong>
+  <%= @item.due %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @item.active %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @item.start %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
