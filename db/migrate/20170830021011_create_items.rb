@@ -4,7 +4,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :name
       t.string :description
       t.references :user, index: true, foreign_key: true
-      t.references :create_by, index: true, foreign_key: true
+      t.string :create_by
       t.references :list, index: true, foreign_key: true
       t.integer :priority
       t.integer :duration
