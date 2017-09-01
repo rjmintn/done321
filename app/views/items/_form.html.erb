@@ -1,4 +1,4 @@
-<%= form_for(@item, :html => {:class => 'form-horozontal'}) do |f| %>
+<%= form_for [@list, @item], :html => {:class => 'form-horozontal'} do |f| %>
 <fieldset>
   <% if @item.errors.any? %>
     <div id="error_explanation">
@@ -20,18 +20,7 @@
     <%= f.label :description, :class => 'control-label' %><br>
     <%= f.text_field :description, :class => 'form-control' %>
   </div>
-  <div class="form-group">
-    <%= f.label :user_id, :class => 'control-label' %><br>
-    <%= f.text_field :user_id, :class => 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :create_by, :class => 'control-label' %><br>
-    <%= f.text_field :create_by, :class => 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :list_id, :class => 'control-label' %><br>
-    <%= f.text_field :list_id, :class => 'form-control' %>
-  </div>
+
   <div class="form-group">
     <%= f.label :priority, :class => 'control-label' %><br>
     <%= f.number_field :priority, :class => 'form-control' %>
@@ -41,20 +30,25 @@
     <%= f.number_field :duration, :class => 'form-control' %>
   </div>
   <div class="form-group">
-    <%= f.label :repeat, :class => 'control-label' %><br>
-    <%= f.text_field :repeat, :class => 'form-control' %>
+    <%= f.label "Repeat every:", :class => 'control-label' %><br>
+    <ul>
+
+      <% Date::DAYNAMES.each do |day| %>
+          <li>
+            <% if controller.action_name == "edit" %>
+              <%= f.check_box(:repeat, {:multiple => true, :checked => (@item[:repeat].split(" ")).include?(day)}, day )%>
+            <% else %>
+              <%= f.check_box(:repeat, {:multiple => true}, day )%>
+            <% end %>
+            <%= h day %>
+          </li>
+      <% end %>
+    </ul>
+
   </div>
   <div class="form-group">
     <%= f.label :due, :class => 'control-label' %><br>
     <%= f.datetime_select :due, :class => 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :active, :class => 'control-label' %><br>
-    <%= f.datetime_select :active, :class => 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :start, :class => 'control-label' %><br>
-    <%= f.datetime_select :start, :class => 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.submit :class => 'btn btn-primary' %>

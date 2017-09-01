@@ -1,30 +1,35 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
-  # GET /items
-  def index
-    @items = Item.all
-  end
-
   # GET /items/1
   def show
+    @list = List.find(params[:list_id])
   end
 
   # GET /items/new
   def new
+    @list = List.find(params[:list_id])
     @item = Item.new
+    @repeated = []
   end
 
   # GET /items/1/edit
   def edit
+    @list = List.find(params[:list_id])
+    #@item.repeat.split(" ")
   end
 
   # POST /items
   def create
+    @list = List.find(params[:list_id])
+    params[:item][:list_id] = @list[:id]
+    i = params[:item][:repeat]
+    i.delete("0")
+    params[:item][:repeat] = i.join(" ")
     @item = Item.new(item_params)
 
     if @item.save
-      redirect_to @item, notice: 'Item was successfully created.'
+      redirect_to users_show_path, notice: 'Hello'
     else
       render :new
     end
@@ -32,8 +37,12 @@ class ItemsController < ApplicationController
 
   # PATCH/PUT /items/1
   def update
+    i = params[:item][:repeat]
+    i.delete("0")
+    params[:item][:repeat] = i.join(" ")
+
     if @item.update(item_params)
-      redirect_to @item, notice: 'Item was successfully updated.'
+      redirect_to users_show_path, notice: @item.repeat
     else
       render :edit
     end
@@ -42,7 +51,7 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   def destroy
     @item.destroy
-    redirect_to items_url, notice: 'Item was successfully destroyed.'
+    redirect_to users_show_path, notice: 'Item was successfully destroyed.'
   end
 
   private

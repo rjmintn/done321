@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170830021011) do
     t.integer  "list_id"
     t.integer  "priority"
     t.integer  "duration"
-    t.binary   "repeat"
+    t.string   "repeat"
     t.datetime "due"
     t.datetime "active"
     t.datetime "start"

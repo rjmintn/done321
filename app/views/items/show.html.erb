@@ -15,14 +15,14 @@
   <%= @item.user %>
 </p>
 
-<p>
+<!-- <p>
   <strong>Create by:</strong>
-  <%= @item.create_by %>
-</p>
+  <%#= @item.create_by %>
+</p> -->
 
 <p>
   <strong>List:</strong>
-  <%= @item.list %>
+  <%= @item.list[:name] %>
 </p>
 
 <p>
@@ -36,8 +36,10 @@
 </p>
 
 <p>
-  <strong>Repeat:</strong>
-  <%= @item.repeat %>
+  <strong>Repeat every:</strong> <br />
+  <% @item.repeat.split(" ").each do |day| %>
+    <%= day %> <br />
+  <% end %>
 </p>
 
 <p>
@@ -55,5 +57,5 @@
   <%= @item.start %>
 </p>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+<%= link_to 'Edit', edit_list_item_path(@item.list, @item) %> |
+<%= link_to 'Back', list_path %>

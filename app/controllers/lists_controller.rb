@@ -1,13 +1,9 @@
 class ListsController < ApplicationController
   before_action :set_list, only: [:show, :edit, :update, :destroy]
 
-  # GET /lists
-  def index
-    @lists = List.all
-  end
-
   # GET /lists/1
   def show
+
   end
 
   # GET /lists/new
@@ -17,14 +13,15 @@ class ListsController < ApplicationController
 
   # GET /lists/1/edit
   def edit
+
   end
 
   # POST /lists
   def create
-    @list = List.new(list_params)
+    @list = current_user.lists.new(list_params)
 
     if @list.save
-      redirect_to lists_url, notice: 'List was successfully created.'
+      redirect_to users_show_url, notice: 'List was successfully created.'
     else
       render :new
     end
@@ -33,7 +30,7 @@ class ListsController < ApplicationController
   # PATCH/PUT /lists/1
   def update
     if @list.update(list_params)
-      redirect_to lists_url, notice: 'List was successfully updated.'
+      redirect_to users_show_url, notice: 'List was successfully updated.'
     else
       render :edit
     end
@@ -42,7 +39,7 @@ class ListsController < ApplicationController
   # DELETE /lists/1
   def destroy
     @list.destroy
-    redirect_to lists_url, notice: 'List was successfully destroyed.'
+    redirect_to users_show_url, notice: 'List was successfully destroyed.'
   end
 
   private

@@ -1,17 +1,28 @@
 <div class="col-md-12">
 
   <div class="jumbotron">
-    <h1>Current Task List</h1>
-    <p>Task list will go here. Functionality will be "complete task", Task name, task desc, and time remaining</p>
-    <!-- <p><a class="btn btn-primary btn-lg">Learn more</a></p> -->
+    <% @user.lists.each do |list| %>
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= link_to "#{list.name}", list_path(list) %>   <%= "#{pluralize(list.items.count, 'item')}" %>  </h3>
+      </div>
+      <div class="panel-body">
+        <%= list.description %> <br />
+        <%= link_to 'Add Item', new_list_item_path(list)%> |
+        <%= link_to 'Edit', edit_list_path(list) %> |
+        <%= link_to 'Delete', list, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+    <%end%>
+    <%= link_to 'New List', new_list_path %>
   </div>
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Your Info</h3>
+      <h3 class="panel-title"><%= @user.email %></h3>
     </div>
     <div class="panel-body">
       <div class="col-md-6">
-        <h5>Hello <%= @user.email %></h5>
+        <p>You have <%= pluralize(@user.lists.count, 'list') %> and <%= pluralize(@user.items.count, 'item') %> to complete.</p>
       </div>
       <div class="col-md-6">
         <p><%= "You have logged in #{pluralize(@user.sign_in_count, 'time')} since creating your account #{time_ago_in_words(@user.created_at)} ago." %></p>

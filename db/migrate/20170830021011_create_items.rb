@@ -8,7 +8,7 @@ class CreateItems < ActiveRecord::Migration
       t.references :list, index: true, foreign_key: true
       t.integer :priority
       t.integer :duration
-      t.binary :repeat
+      t.string :repeat
       t.datetime :due
       t.datetime :active
       t.datetime :start

@@ -1,5 +1,5 @@
 
-<%= form_for @list, :html => {:class => 'form-horozontal'} do |f| %>
+<%= form_for [@item, @list], :html => {:class => 'form-horozontal'} do |f| %>
     <fieldset>
   <% if @list.errors.any? %>
     <div id="error_explanation">
@@ -24,5 +24,9 @@
   <div class="form-group">
     <%= f.submit :class => 'btn btn-primary' %>
   </div>
+
+  <% @list.items.each do |item| %>
+    <%= item %>
+  <% end %>
 </fieldset>
 <% end %>
