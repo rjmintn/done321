@@ -12,7 +12,7 @@ end
 @lists = List.all
 
 @lists.each do |list|
-  rand(2..5).times do
+  rand(20..50).times do
     item = Item.create!(
     name: Faker::Lorem.sentence,
     description: Faker::Lorem.sentence,
@@ -23,7 +23,7 @@ end
     duration: rand(1..8),
     repeat: Date::DAYNAMES.sample,
     due: Faker::Date,
-    active: Faker::Date,
+    active: Faker::Date.between(6.days.ago, Date.today),
     start: Faker::Date,
 
     )

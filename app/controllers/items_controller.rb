@@ -51,7 +51,9 @@ class ItemsController < ApplicationController
   # DELETE /items/1
   def destroy
     @item.destroy
-    redirect_to users_show_path, notice: 'Item was successfully destroyed.'
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

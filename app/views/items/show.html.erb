@@ -57,5 +57,5 @@
   <%= @item.start %>
 </p>
 
-<%= link_to 'Edit', edit_list_item_path(@item.list, @item) %> |
+<%= link_to '<i class = "glyphicon glyphicon-pencil"></i> '.html_safe, edit_list_item_path(@item.list, @item) %> |
 <%= link_to 'Back', list_path %>
