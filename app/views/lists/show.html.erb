@@ -5,10 +5,11 @@
       <h3 class="panel-title"><%= @list.name %></h3>
     </div>
     <div class="panel-body">
-      <% @list.items.each do |item| %>
+      <% (@list.items.sort_by {|date| date.created_at}.reverse).each do |item| %>
         <p class="item">
 
-        <%= link_to item.name, list_item_path(item.list, item) %>
+        <%= link_to item.name, list_item_path(item.list, item) %><br />
+        <%= "Due in #{distance_of_time_in_words(item.created_at, Time.now)}"%>
         <br />
         <%= link_to '<i class = "glyphicon glyphicon-pencil"></i> '.html_safe, edit_list_item_path(item.list, item) %> |
         <%= link_to '<i class = "glyphicon glyphicon-ok"></i> '.html_safe, [item.list, item], method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></p>
