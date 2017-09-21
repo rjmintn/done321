@@ -4,10 +4,11 @@ Rails.application.routes.draw do
     resources :items
   end
   resources :posts
-  
+
   get 'users/show'
 
-  devise_for :users
+  devise_for :users, controllers: {sessions: 'users/sessions'}
+
   get 'todo/index'
 
   get 'todo/about'

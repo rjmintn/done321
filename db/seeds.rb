@@ -6,7 +6,7 @@ users = User.all
     description: Faker::Lorem.sentence,
     user_id: users.sample.id
   )
-  list.update_attributes(:created_at => Faker::Date.between(6.days.ago, Date.today), :updated_at => Date.today)
+  list.update_attributes(:created_at => Faker::Date.between(10.days.ago, Date.today), :updated_at => Date.today)
 end
 
 @lists = List.all
@@ -23,11 +23,11 @@ end
     duration: rand(1..8),
     repeat: Date::DAYNAMES.sample,
     due: Faker::Date,
-    active: Faker::Date.between(6.days.ago, Date.today),
+    active: Faker::Date.between(10.days.ago, Date.today),
     start: Faker::Date,
 
     )
-    item.update_attributes(:created_at => Faker::Date.between(6.days.ago, Date.today),  :updated_at => Date.today)
+    item.update_attributes(:created_at => Faker::Date.between(10.days.ago, Date.today),  :updated_at => Date.today)
 
 
   end
